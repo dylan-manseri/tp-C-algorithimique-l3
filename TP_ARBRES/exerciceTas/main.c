@@ -32,6 +32,14 @@ int main(void) {
         printf("ce n'est pas un tas\n");
     }
     parcoursLargeurParNiveau(a, taille(a));
-    a = convertAPtoTas(a);
+    ArbreParfait tas;
+    tas = allocMemAP(tas, taille(a));
+    tas = initAP(tas);
+    a = recConvertTabToTas(taille(a), tas, a.tab);
     parcoursLargeurParNiveau(a, taille(a));
+    int tab[7] = {2,5,6,7,6,4,7};
+    triParTas(7, tab);
+    for (int i=0; i<7; i++) {
+        printf("%d", tab[i]);
+    }
 }

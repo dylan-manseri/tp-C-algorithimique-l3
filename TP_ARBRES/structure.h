@@ -50,7 +50,8 @@ int estTasVer1(int n, ArbreParfait a);
 int estTasVer2(int n, ArbreParfait a);
 int recEstTasVer1(int n, ArbreParfait a);
 int recEstTasVer2(int n, int r, ArbreParfait a);
-ArbreParfait permutationAP(int x, int y, ArbreParfait a);
-Tas convertAPtoTas(ArbreParfait a);
+Tas convertTabtoTas(int n, int *tab);
+Tas recConvertTabToTas(int n, ArbreParfait tas, int *tab);
+void triParTas(int n, int *tab);
 
 #endif

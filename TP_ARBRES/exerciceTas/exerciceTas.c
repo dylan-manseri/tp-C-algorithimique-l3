@@ -166,31 +166,36 @@ int recEstTasVer2(int n, int r , ArbreParfait a) {
     return donneeAP(r, a) >= donneeAP(fg, a);
 }
 
-ArbreParfait permutationAP(int x, int y, ArbreParfait a) {
-    int tmp = a.tab[x];
-    a.tab[x] = a.tab[y];
-    a.tab[y] = tmp;
-    return a;
+Tas convertTabtoTas(int n, int *tab) {
+    ArbreParfait tas;
+    tas = allocMemAP(tas, n);
+    tas = initAP(tas);
+    for (int i=0; i<n; i++) {
+        tas=inserTas(tab[i], tas);
+    }
+    return tas;
 }
 
-Tas convertAPtoTas(ArbreParfait a) {
-    int n = taille(a);
-    int p, fg, fd, fmax;
-    for (int i=n-1; i>=0; i--) {
-        fg = filsGaucheAP(i, a);
-        if (estExistNoeudAP(fg, a)) {
-            fmax = fg;
-            fd = filsDroitAP(i, a);
-            if (estExistNoeudAP(fd, a)) {
-                if (donneeAP(fd, a) > donneeAP(fg, a)) {
-                    fmax = fd;
-                }
-            }
-            int k = i;
-            while (donneeAP(k, a) < donneeAP(fmax, a)) {
-                a = permutationAP(i, fmax, a);
-            }
-        }
+Tas recConvertTabToTas(int n, ArbreParfait tas, int *tab) {
+    if (n == 0) {
+        return tas;
     }
-    return a;
+    tas = recInserTas(tab[n-1], taille(tas), tas);
+    return recConvertTabToTas(n-1, tas, tab);
+}
+
+void triParTas(int n, int *tab) {
+    Tas tas;
+    tas = allocMemAP(tas, n);
+    tas = initAP(tas);
+    for (int i=0; i<n; i++) {
+        tas = inserTas(tab[i], tas);
+    }
+    int e;
+    for (int j=n-1; j>-1; j--) {
+        e = sommetTas(tas);
+        tas = suppTas(tas);
+        tab[j] = e;
+    }
+    free(tas.tab);
 }
