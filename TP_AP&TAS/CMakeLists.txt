@@ -1,10 +1,10 @@
 cmake_minimum_required(VERSION 4.0)
-project(TP_ARBRES C)
+project(TP_AP&TAS C)
 
 set(CMAKE_C_STANDARD 23)
 
 add_executable(
-        TP_ARBRES exerciceArbres/main.c
+        TP_AP exerciceArbres/main.c
         structure.h
         exerciceArbres/exerciceArbres.c
         exerciceArbres/fonctionArbre.c
