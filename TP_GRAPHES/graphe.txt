@@ -1,0 +1,9 @@
+Nature du graphe = 1;
+Nombre de sommets = 4;
+START
+1-2;
+2-3;
+4-3;
+4-4;
+3-1;
+END
