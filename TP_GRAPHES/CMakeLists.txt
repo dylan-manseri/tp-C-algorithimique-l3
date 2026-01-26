@@ -7,4 +7,7 @@ set(CMAKE_C_STANDARD 23)
 add_executable(TD1_2 main.c
         structure.h
         partieTP/tab_mat.c
-        partieTP/fichiers.c)
+        partieTP/fichiers.c
+        partieTP/succ_pred.c
+        utilitaire.c
+        )

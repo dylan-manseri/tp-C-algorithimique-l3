@@ -20,6 +20,35 @@ typedef struct {
     int **mat;
 }MatIncidence;
 
+typedef struct{
+    int nbSom;
+    int nbArcs;
+    int *FS;
+    int *APS;
+}FileSuccesseur;
+
+typedef struct cel{
+    int donnee;
+    struct cel* suivant; 
+}*Liste;
+
+typedef struct{
+    int nbSom;
+    Liste *tabAdj;
+}ListeAdjacence;
+
+int nbSom(MatAdjacence m);
+
+int estVide(Liste l);
+int donnee(Liste l);
+Liste suivant(Liste l);
+Liste inserTete(int donnee, Liste l);
+Liste adrDernier(Liste l);
+Liste inserQueue(int donnee, Liste l);
+Liste initL();
+
+ListeAdjacence initLA(int nbSom);
+
 MatAdjacence allocSMA_F(int n);
 void allocSMA_P(int n, MatAdjacence *ma);
 void *libTabF(int *tab);
@@ -31,6 +60,11 @@ void libMatAdjP(MatAdjacence *mat);
 
 MatAdjacence loading(char* nom);
 void printMat(MatAdjacence mat);
+
+void traitSuccMatAdj(int s, MatAdjacence g);
+void traitSuccFS(int s, FileSuccesseur fs);
+void traitSuccL(int s, ListeAdjacence la);
+
 
 #endif
 
