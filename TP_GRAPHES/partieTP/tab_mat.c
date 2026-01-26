@@ -68,7 +68,7 @@ void allocSMA_P(int n, MatAdjacence *mat) {
 
 void *libTabF(int *tab) {
     free(tab);
-    tab=nullptr;
+    tab=NULL;
     return tab;
 }
 
