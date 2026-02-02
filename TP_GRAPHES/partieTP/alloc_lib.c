@@ -1,9 +1,14 @@
-#include "../structure.h"
+/**
+ *Fichier regroupant toutes les allocations et libération des structures (y'en a bcp)
+ *Pas toutes ces allocations sont dans le TP, j'en ai rajouté
+ */
+
+#include "../include/structure.h"
 
 int* allocTab(int nMax) {
     int* tab = malloc(nMax * sizeof(int));
     if (tab==NULL) {
-        printf("ouiErreur d'allocation");
+        printf("Erreur d'allocation");
         exit(1);
     }
     return tab;
@@ -64,6 +69,30 @@ MatAdjacence allocSMA_F(int n) {
 void allocSMA_P(int n, MatAdjacence *mat) {
     mat->nbSom = n;
     mat->mat = allocMemMatF(n, n);
+}
+
+void allocLA(int nbSom, ListeAdjacence* la){
+    la->nbSom = nbSom;
+    la->tabAdj = malloc(la->nbSom * sizeof(struct cel));
+    for(int i=0; i<nbSom; i++){
+        la->tabAdj[i] = initL();
+    }
+}
+
+void allocFS(int n, int nbArcs, FileSuccesseur* fs) {
+    fs->nbArcs = nbArcs;
+    fs->nbSom = n;
+    fs->APS = malloc(n+1 * sizeof(int));
+    fs->FS = malloc(nbArcs+1 * sizeof(int));
+}
+
+void allocLSP(int n, ListeAdjSuccPred* lsp) {
+    lsp->nbSom = n;
+    lsp->tabAdjSP = malloc(n * sizeof(ListeSuccPred));
+    for (int i=0; i<n; i++) {
+        lsp->tabAdjSP[i].lPred = initLP();
+        lsp->tabAdjSP[i].lSucc = initLS();
+    }
 }
 
 void *libTabF(int *tab) {

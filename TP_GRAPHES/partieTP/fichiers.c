@@ -1,4 +1,9 @@
-#include "../structure.h"
+/**
+ *Exercice du TP sur la lecture d'un fichier
+ */
+
+
+#include "../include/structure.h"
 
 /**
  * Nature du graphe : 1 si orienté, 0 sinon
