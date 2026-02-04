@@ -128,5 +128,7 @@ ListeAdjacence convertMAtoLA(MatAdjacence ma);
 int countArc(MatAdjacence ma);
 FileSuccesseur convertMAtoFS(MatAdjacence ma);
 ListeAdjSuccPred convertMAtoLSP(MatAdjacence ma);
+ListeAdjacence convertFStoLA(FileSuccesseur fs);
+FileSuccesseur convertLAtoFS(ListeAdjacence la);
 
 #endif

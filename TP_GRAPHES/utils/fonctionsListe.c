@@ -131,7 +131,7 @@ ListeSucc inserQueueLS(int somSucc, ListeSucc ls) {
         return inserTeteLS(somSucc, ls);
     }
     ListeSucc der = adrDernierLS(ls);
-    der->suivSucc = inserTeteLS(somSucc, suivant(ls));
+    der->suivSucc = inserTeteLS(somSucc, suivantLS(ls));
     return ls;
 }
 

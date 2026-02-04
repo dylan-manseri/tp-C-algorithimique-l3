@@ -13,7 +13,7 @@ void printTab(int n, int* tab){
 void printListe(Liste l) {
     printf("| ");
     while (!estVide(l)) {
-        printf("%d | ", donnee(l)+1);
+        printf("%d | ", donnee(l));
         l=suivant(l);
     }
 }
@@ -29,7 +29,7 @@ void printLA(ListeAdjacence la) {
 void printFS(FileSuccesseur fs) {
     printf("FS : | ");
     for (int i=0; i<fs.nbArcs; i++) {
-        printf("%d | ", fs.FS[i]+1);
+        printf("%d | ", fs.FS[i]);
     }
     printf("\nAPS : | ");
     for (int j=0; j<fs.nbSom; j++) {

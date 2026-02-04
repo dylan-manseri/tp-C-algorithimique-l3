@@ -13,7 +13,7 @@ ListeAdjacence convertMAtoLA(MatAdjacence ma) {
     for (int s=0; s<n; s++) {
         for (int t=0; t<n; t++) {
             if (mat[s][t] == 1) {
-                la.tabAdj[s] = inserQueue(t ,la.tabAdj[s]);
+                la.tabAdj[s] = inserQueue(t+1 ,la.tabAdj[s]); // t+1 pour insérer la bonne valeur non algorithmique
             }
         }
     }
@@ -56,7 +56,7 @@ FileSuccesseur convertMAtoFS(MatAdjacence ma) {
         fs.APS[s] = iaps;
         for (int t=0; t<n; t++) {
             if (mat[s][t] == 1) {
-                fs.FS[iaps] = t;
+                fs.FS[iaps] = t+1;
                 iaps++;
             }
         }
@@ -85,4 +85,51 @@ ListeAdjSuccPred convertMAtoLSP(MatAdjacence ma) {
         }
     }
     return lsp;
+}
+
+/**
+ * Construit une liste d'adjacence en fonction d'une file de successeur
+ * @param fs la fille de successeur initial
+ * @return la liste d'adjacence crée
+ */
+ListeAdjacence convertFStoLA(FileSuccesseur fs) {
+    int n = fs.nbSom;
+    ListeAdjacence la;
+    allocLA(fs.nbSom, &la);
+    int iaps, nbr;
+    for (int s=0; s<n; s++) {
+        iaps = fs.APS[s];
+        nbr = fs.APS[s+1] - fs.APS[s];
+        for (int j=iaps; j<iaps+nbr; j++) {
+            la.tabAdj[s] = inserQueue(fs.FS[j], la.tabAdj[s]);
+        }
+    }
+    return la;
+}
+
+/**
+ * Construit une File de successeur à partir d'une liste d'adjacence
+ * @param la La liste d'adjacence initiale
+ * @return La File de successeur resultante
+ */
+FileSuccesseur convertLAtoFS(ListeAdjacence la) {
+    int n = la.nbSom;
+    FileSuccesseur fs;
+    allocFS(n, n*2, &fs);
+    int iaps;
+    Liste tmp;
+    int s;
+    for (s=0; s<n; s++) {
+        iaps = s;
+        fs.APS[s] = iaps;
+        tmp = la.tabAdj[s];
+        while (!estVide(tmp)) {
+            fs.FS[iaps] = donnee(la.tabAdj[s]);
+            iaps++;
+            tmp = suivant(tmp);
+        }
+    }
+    fs.APS[s] = iaps;       // Sommets virtuels
+    fs.FS[iaps] = 0;
+    return fs;
 }
