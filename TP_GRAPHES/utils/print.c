@@ -66,15 +66,6 @@ void printLSP(ListeAdjSuccPred lsp) {
     }
 }
 
-/*void printMat(MatAdjacence mat) {
-    for (int i=0; i<mat.nbSom; i++) {
-        for (int j=0; j<mat.nbSom; j++) {
-            printf("%d",mat.mat[i][j]);
-        }
-        printf("\n");
-    }
-}*/
-
 /**
  * J'ai tenté la généricité sur cette fonction jsp si c'est ça mais ça marche donc on s'en fou nan ?
  * @param mat la matrice adjacence ou incidence

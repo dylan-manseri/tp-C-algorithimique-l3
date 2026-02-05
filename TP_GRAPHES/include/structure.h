@@ -121,7 +121,6 @@ void printLS(ListeSucc ls);
 void printLP(ListePred lp);
 void printLSP(ListeAdjSuccPred lsp);
 void printMat(void* mat, TypeMatrice type);
-//void printMat(MatAdjacence mat);
 
 int estBoucleMA(MatAdjacence ma);
 int estBoucleFS(FileSuccesseur fs);
