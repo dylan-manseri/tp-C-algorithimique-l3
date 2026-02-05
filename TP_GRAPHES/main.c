@@ -12,6 +12,7 @@ int main(void) {
 
     //traitSuccMatAdj(3, mat);
     //traitPredMatAdj(3, mat);
+
     /*if(estBoucleMA(mat)){
         printf("C'est une boucle !\n");
     }
@@ -29,6 +30,12 @@ int main(void) {
 
     /*ListeAdjSuccPred lsp = convertMAtoLSP(mat);
     printLSP(lsp);*/
+
+    /*MatIncidence mi = convertMAtoMI(mat);
+    printf("Matrice adjacence :\n");
+    printMat(&mat, MAT_ADJACENCE);
+    printf("Matrice d'incidence :\n");
+    printMat(&mi, MAT_INCIDENCE);*/
 
     // STRUCTURE FILE DE SUCCESSEUR
 
@@ -80,6 +87,6 @@ int main(void) {
 
    //printf("%d\n", maxSuccLA(la));
 
-    FileSuccesseur f = convertLAtoFS(la);
-    printFS(fs);
+    /*FileSuccesseur f = convertLAtoFS(la);
+    printFS(fs);*/
 }

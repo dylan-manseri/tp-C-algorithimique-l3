@@ -65,3 +65,47 @@ void printLSP(ListeAdjSuccPred lsp) {
         printLP(lsp.tabAdjSP[i].lPred);
     }
 }
+
+/*void printMat(MatAdjacence mat) {
+    for (int i=0; i<mat.nbSom; i++) {
+        for (int j=0; j<mat.nbSom; j++) {
+            printf("%d",mat.mat[i][j]);
+        }
+        printf("\n");
+    }
+}*/
+
+/**
+ * J'ai tenté la généricité sur cette fonction jsp si c'est ça mais ça marche donc on s'en fou nan ?
+ * @param mat la matrice adjacence ou incidence
+ * @param type indique le type pour adopter le bon comportement en fonction
+ */
+void printMat(void* mat, TypeMatrice type) {
+    int lig, col;
+    if (type == MAT_ADJACENCE) {
+        MatAdjacence *matA = (MatAdjacence*) mat;
+        lig = matA->nbSom;
+        col = lig;
+        for (int i=0; i<lig; i++) {
+            for (int j=0; j<col; j++) {
+                printf("%d  ",matA->mat[i][j]);
+            }
+            printf("\n");
+        }
+    }
+    else if (type == MAT_INCIDENCE) {
+        MatIncidence* matI= (MatIncidence*) mat;
+        lig = matI->nbSom;
+        col = matI->nbArc;
+        for (int i=0; i<lig; i++) {
+            for (int j=0; j<col; j++) {
+                printf("%d ",matI->mat[i][j]);
+            }
+            printf("\n");
+        }
+    }
+    else{
+        printf("\n Erreur de type\n");
+        return;
+    }
+}

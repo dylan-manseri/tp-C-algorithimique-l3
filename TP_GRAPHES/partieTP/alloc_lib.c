@@ -66,6 +66,19 @@ MatAdjacence allocSMA_F(int n) {
     return mat;
 }
 
+MatIncidence alloc_SMI_F(int nbSom, int nbArcs) {
+    MatIncidence mat;
+    mat.nbSom = nbSom;
+    mat.nbArc = nbArcs;
+    mat.mat = allocMemMatF(nbSom,nbArcs);
+    for (int i=0; i<nbSom; i++) {
+        for (int j=0; j<nbArcs; j++) {
+            mat.mat[i][j] = 0;
+        }
+    }
+    return mat;
+}
+
 void allocSMA_P(int n, MatAdjacence *mat) {
     mat->nbSom = n;
     mat->mat = allocMemMatF(n, n);
@@ -132,13 +145,4 @@ MatAdjacence libMatAdjF(MatAdjacence mat) {
 void libMatAdjP(MatAdjacence *mat) {
     mat->mat = libMatF(mat->mat, mat->nbSom);
     mat->nbSom = 0;
-}
-
-void printMat(MatAdjacence mat) {
-    for (int i=0; i<mat.nbSom; i++) {
-        for (int j=0; j<mat.nbSom; j++) {
-            printf("%d",mat.mat[i][j]);
-        }
-        printf("\n");
-    }
 }

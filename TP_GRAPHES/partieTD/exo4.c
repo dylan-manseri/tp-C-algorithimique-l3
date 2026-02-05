@@ -133,3 +133,25 @@ FileSuccesseur convertLAtoFS(ListeAdjacence la) {
     fs.FS[iaps] = 0;
     return fs;
 }
+
+/**
+ * Convertit une matrice d'incidence à partir d'une matrice d'adjacence
+ * @param ma la matrice d'adjacence initial
+ * @return la matrice d'incidence résultante
+ */
+MatIncidence convertMAtoMI(MatAdjacence ma) {
+    int nbSom = ma.nbSom;
+    int nbArcs = countArc(ma);
+    MatIncidence matI = alloc_SMI_F(nbSom, nbArcs);
+    int currentArc = 0;
+    for (int s=0; s<nbSom; s++) {
+        for (int t=0; t<nbSom; t++) {
+            if (ma.mat[s][t] == 1) {
+                matI.mat[s][currentArc] = +1;
+                matI.mat[t][currentArc] = -1;
+                currentArc++;
+            }
+        }
+    }
+    return matI;
+}

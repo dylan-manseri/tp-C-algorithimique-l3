@@ -20,6 +20,11 @@ typedef struct {
     int **mat;
 }MatIncidence;
 
+typedef enum{
+    MAT_ADJACENCE,
+    MAT_INCIDENCE
+}TypeMatrice;
+
 typedef struct{
     int nbSom;
     int nbArcs;
@@ -97,9 +102,9 @@ void libMatAdjP(MatAdjacence *mat);
 void allocLA(int n, ListeAdjacence* la);
 void allocFS(int n, int nbArcs, FileSuccesseur* fs);
 void allocLSP(int n, ListeAdjSuccPred* lsp);
+MatIncidence alloc_SMI_F(int nbSom, int nbArcs);
 
 MatAdjacence loading(char* nom);
-void printMat(MatAdjacence mat);
 
 void traitSuccMatAdj(int s, MatAdjacence g);
 void traitPredMatAdj(int s, MatAdjacence g);
@@ -115,6 +120,8 @@ void printFS(FileSuccesseur fs);
 void printLS(ListeSucc ls);
 void printLP(ListePred lp);
 void printLSP(ListeAdjSuccPred lsp);
+void printMat(void* mat, TypeMatrice type);
+//void printMat(MatAdjacence mat);
 
 int estBoucleMA(MatAdjacence ma);
 int estBoucleFS(FileSuccesseur fs);
@@ -130,5 +137,6 @@ FileSuccesseur convertMAtoFS(MatAdjacence ma);
 ListeAdjSuccPred convertMAtoLSP(MatAdjacence ma);
 ListeAdjacence convertFStoLA(FileSuccesseur fs);
 FileSuccesseur convertLAtoFS(ListeAdjacence la);
+MatIncidence convertMAtoMI(MatAdjacence ma);
 
 #endif
