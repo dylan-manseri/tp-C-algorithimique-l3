@@ -2,8 +2,8 @@
  *Exercice du TP sur la lecture d'un fichier
  */
 
-
-#include "../include/structure.h"
+#include <stdio.h>
+#include "../../include/prototypeTD12.h"
 
 /**
  * Nature du graphe : 1 si orienté, 0 sinon

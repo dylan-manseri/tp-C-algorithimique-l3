@@ -1,11 +1,5 @@
-#ifndef STRUCT
-#define STRUCT
-
-int* allocTab(int nMax);
-void allocTabP(int nMax, int **tab);
-int** allocMemMatF(int nbLig, int nbCol);
-void allocMemMatP(int nbLig, int nbCol, int*** mat);
-
+#ifndef TD_PARCOURS_GRAPHES_STRUCTURE_H
+#define TD_PARCOURS_GRAPHES_STRUCTURE_H
 typedef struct {
     int nbSom;
     int **mat;
@@ -31,7 +25,7 @@ typedef struct{
 
 typedef struct cel{
     int donnee;
-    struct cel* suivant; 
+    struct cel* suivant;
 }*Liste;
 
 typedef struct{
@@ -61,5 +55,4 @@ typedef struct{
     int nbSom;
     ListeSuccPred *tabAdjSP;
 }ListeAdjSuccPred;
-
-#endif
+#endif //TD_PARCOURS_GRAPHES_STRUCTURE_H

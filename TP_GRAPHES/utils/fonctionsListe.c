@@ -6,6 +6,8 @@
  *
  * Remarque : Je sais pas si avec la généricité on pourrait tout regrouper, ça serait intéressant d'éssayer
 */
+#include <stdlib.h>
+
 #include "../include/structure.h"
 
 // Est vide

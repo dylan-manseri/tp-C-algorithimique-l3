@@ -1,4 +1,4 @@
-#include "../include/structure.h"
+#include "../../include/prototypeTD12.h"
 
 /**
  * Crée une Liste d'adjacence à partir d'une matrice d'adjacence

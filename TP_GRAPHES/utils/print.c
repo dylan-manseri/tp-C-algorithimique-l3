@@ -1,4 +1,6 @@
-#include "../include/structure.h"
+#include <stdio.h>
+
+#include "../include/prototypeTD12.h"
 
 // Fonction d'écriture pour chaque structure, afin de pouvoir débugger !!
 

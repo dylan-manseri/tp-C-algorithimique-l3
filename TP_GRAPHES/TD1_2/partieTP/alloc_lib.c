@@ -3,7 +3,9 @@
  *Pas toutes ces allocations sont dans le TP, j'en ai rajouté
  */
 
-#include "../include/structure.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include "../../include/prototypeTD12.h"
 
 int* allocTab(int nMax) {
     int* tab = malloc(nMax * sizeof(int));

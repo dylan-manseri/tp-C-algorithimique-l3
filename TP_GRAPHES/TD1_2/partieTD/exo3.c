@@ -3,35 +3,38 @@
  * Donc ici ça sera tous les algos de l'exo 3.
  */
 
-#include "../include/structure.h"
+#include <stdlib.h>
+#include "../../include/prototypeTD12.h"
 
 /**
- * On va prendre print pour l'exemple mais on peut mettre n'importe quoi
- * Ici notre représentation est la matrice adjacence
+ * On va prendre print pour l'exemple, mais on peut mettre n'importe quoi
+ * Ici notre représentation est la matrice adjacence.
  */
-void traitSuccMatAdj(int s, MatAdjacence g){
-    s--;
+int* getSuccMatAdj(int s, MatAdjacence g){
     int n = nbSom(g);
-    int *tab = malloc(n * sizeof(int));
+    int *tab = malloc(n+1 * sizeof(int));
     int j=0;
-    for(int i=0; i<n; i++){
+    int i;
+    for(i=0; i<n; i++){
         if(g.mat[s][i] == 1){
-            tab[j] = i+1; 
+            tab[j] = i;
         }
         else{
             tab[j] = 0;
         }
         j++;
     }
-    printTab(j,tab);
+    tab[0] = i;
+    return tab;
 }
 
-void traitPredMatAdj(int s, MatAdjacence g){
+int* getPredMatAdj(int s, MatAdjacence g){
     s--;
     int n = nbSom(g);
     int j=0;
-    int *tab = malloc(n * sizeof(int));
-    for(int i=0; i<n; i++){
+    int *tab = malloc(n+1 * sizeof(int));
+    int i;
+    for(i=1; i<n; i++){
         if(g.mat[i][s] == 1){
             tab[j] = 1;
         }
@@ -40,14 +43,15 @@ void traitPredMatAdj(int s, MatAdjacence g){
         }
         j++;
     }
-    printTab(j, tab);
+    tab[0] = i;
+    return tab;
 }
 
 /**
  * Ici pareil on cherche seulement à traiter les successeurs D'UN sommets.
  * On utilise la représentation avec la file de successeur.
  */
-void traitSuccFS(int s, FileSuccesseur fs){
+int* getSuccFS(int s, FileSuccesseur fs){
     s--;                        // On soustrait car sommet logique = sommet algorithmique +1
     int start = fs.APS[s];
     int end = fs.APS[s+1];
@@ -58,10 +62,10 @@ void traitSuccFS(int s, FileSuccesseur fs){
         tab[k] = fs.FS[i];
         k++;
     }
-    printTab(nb, tab);
+    return tab;
 }
 
-void traitPredFS(int s, FileSuccesseur fs){     // Pas besoin de soustraire s, on ne s'en sert pas comme indice mais comme contenu
+int* getPredFS(int s, FileSuccesseur fs){     // Pas besoin de soustraire s, on ne s'en sert pas comme indice mais comme contenu
     int nbArcs = fs.nbArcs;
     int nbrSom;
     int k = 0;
@@ -77,10 +81,10 @@ void traitPredFS(int s, FileSuccesseur fs){     // Pas besoin de soustraire s, o
             k++;
         }
     }
-    printTab(k, tab);
+    return tab;
 }
 
-void traitSuccL(int s, ListeAdjacence la){
+int* getSuccL(int s, ListeAdjacence la){
     s--;
     Liste succ = la.tabAdj[s];
     int* tab = malloc(la.nbSom * sizeof(int));
@@ -90,10 +94,10 @@ void traitSuccL(int s, ListeAdjacence la){
         succ = suivant(succ);
         i++;
     }
-    printTab(i, tab);
+    return tab;
 }
 
-void traitPredL(int s, ListeAdjacence la){
+int* getPredL(int s, ListeAdjacence la){
     Liste* tabL = la.tabAdj;
     int *tab = malloc(la.nbSom * sizeof(int));
     Liste iSucc;
@@ -108,7 +112,7 @@ void traitPredL(int s, ListeAdjacence la){
             iSucc = suivant(iSucc);
         }
     }
-    printTab(k, tab);
+    return tab;
 }
 
 /**
