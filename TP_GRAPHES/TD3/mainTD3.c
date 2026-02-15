@@ -4,6 +4,6 @@
 int mainTD3(void) {
 
     MatAdjacence mat = loading("/home/dylanm/Insync/nalyd.irsnm@gmail.com/Google Drive/DrivePC/LICENCE INFORMATIQUE/L3 INFORMATIQUE/S6/Graphes et optimisation combinatoire/tp-code/TP_GRAPHES/graphe.txt");
-    parcoursProfondeurMA(0, mat);
+    parcoursProfondeur(0, &mat, MAT_ADJACENCE);
     return 0;
 }

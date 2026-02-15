@@ -109,6 +109,18 @@ ListeSucc adrDernierLS(ListeSucc ls) {
     return ls;
 }
 
+
+// adresseInsertion
+Liste adrInsertion(int d, Liste l) {
+    while (!estVide(suivant(l)) && d > donnee(suivant(l))){
+        l = suivant(l);
+    }
+    /*if (!estVide(suivant(l)) && (d == donnee(suivant(l)) || d == donnee(l))) {
+        return NULL;
+    }*/
+    return l;
+}
+
 // inserQueue
 Liste inserQueue(int donnee, Liste l){
     if(estVide(l)){
@@ -135,6 +147,18 @@ ListeSucc inserQueueLS(int somSucc, ListeSucc ls) {
     ListeSucc der = adrDernierLS(ls);
     der->suivSucc = inserTeteLS(somSucc, suivantLS(ls));
     return ls;
+}
+
+//inserTrie
+Liste inserTrie(int donnee, Liste l) {
+    if(estVide(l)) {
+        return inserTete(donnee, l);
+    }
+    Liste ai = adrInsertion(donnee, l);
+    if (ai != NULL) {
+        ai->suivant = inserTete(donnee, suivant(ai));
+    }
+    return l;
 }
 
 // initL

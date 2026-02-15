@@ -1,8 +1,9 @@
 #include "../include/prototypeTD3.h"
 #include "../include/prototypeTD12.h"
 #include <stdio.h>
+#include <stdlib.h>
 
-int somSuivantMA(int s, int n, int* visite) {
+int somSuivant(int s, int n, int* visite) {
     int trouve = 0;
     while (!trouve) {
         if (visite[s] != 1) {
@@ -13,24 +14,40 @@ int somSuivantMA(int s, int n, int* visite) {
     return s;
 }
 
-void reParcoursProfondeurMA(int s, int* visite, MatAdjacence mat, int n, int* nbSomVisite)  {
+void reParcoursProfondeur(int s, int* visite, void* g, TypeGraphe type, int n, int* nbSomVisite)  {
     if (*nbSomVisite < n) {
         visite[s] = 1;
         printf(" %d |", s+1);
         *nbSomVisite = *nbSomVisite+1;
-        int* succ = getSuccMatAdj(s, mat);
+        int* succ;
+        if (type == MAT_ADJACENCE) {
+            MatAdjacence* mat = (MatAdjacence*) g;
+            succ = getSuccMatAdj(s, *mat);
+        }
+        else if (type == FILE_SUCCESSEUR) {
+            FileSuccesseur* fs = (FileSuccesseur*) g;
+            succ = getSuccFS(s, *fs);
+        }
+        else if (type == LISTE_ADJACENCE) {
+            ListeAdjacence* la = (ListeAdjacence*) g;
+            succ = getSuccL(s, *la);
+        }
+        else {
+            printf("\nErreur de type");
+            exit(1);
+        }
         for (int i=1; i<succ[0]; i++) {
             if (!visite[i]) {
-                reParcoursProfondeurMA(i, visite, mat, n, nbSomVisite);
+                reParcoursProfondeur(i, visite, g, type, n, nbSomVisite);
             }
         }
     }
 }
 
-void parcoursProfondeurMA(int sd, MatAdjacence mat) {
-    int n = mat.nbSom;
-    int* visite = allocTab(mat.nbSom);
-    for (int s=0; s<mat.nbSom; s++) {
+void parcoursProfondeur(int sd, void* g, TypeGraphe type) {
+    int n = nbSomGen(g, type);
+    int* visite = allocTab(n);
+    for (int s=0; s<n; s++) {
         visite[s] = 0;
     }
     int s =sd;
@@ -38,9 +55,9 @@ void parcoursProfondeurMA(int sd, MatAdjacence mat) {
     int finParcours = 0;
     printf("Sommets rencontrés : |");
     while (!finParcours) {
-        reParcoursProfondeurMA(s, visite, mat, n, &nbSomVisite);
-        if (nbSomVisite < mat.nbSom) {
-            s = somSuivantMA(s, n, visite);
+        reParcoursProfondeur(s, visite, g, type, n, &nbSomVisite);
+        if (nbSomVisite < n) {
+            s = somSuivant(s, n, visite);
         }
         else {
             finParcours = 1;

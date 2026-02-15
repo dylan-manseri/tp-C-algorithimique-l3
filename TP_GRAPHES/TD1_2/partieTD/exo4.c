@@ -13,7 +13,7 @@ ListeAdjacence convertMAtoLA(MatAdjacence ma) {
     for (int s=0; s<n; s++) {
         for (int t=0; t<n; t++) {
             if (mat[s][t] == 1) {
-                la.tabAdj[s] = inserQueue(t+1 ,la.tabAdj[s]); // t+1 pour insérer la bonne valeur non algorithmique
+                la.tabAdj[s] = inserQueue(t ,la.tabAdj[s]);
             }
         }
     }
@@ -56,7 +56,7 @@ FileSuccesseur convertMAtoFS(MatAdjacence ma) {
         fs.APS[s] = iaps;
         for (int t=0; t<n; t++) {
             if (mat[s][t] == 1) {
-                fs.FS[iaps] = t+1;
+                fs.FS[iaps] = t;
                 iaps++;
             }
         }
@@ -107,6 +107,18 @@ ListeAdjacence convertFStoLA(FileSuccesseur fs) {
     return la;
 }
 
+int countArcLA(ListeAdjacence la) {
+    int arc=0;
+    for (int s=0; s<la.nbSom; s++) {
+        Liste l = la.tabAdj[s];
+        while (!estVide(l)) {
+            arc++;
+            l = suivant(l);
+        }
+    }
+    return arc;
+}
+
 /**
  * Construit une File de successeur à partir d'une liste d'adjacence
  * @param la La liste d'adjacence initiale
@@ -115,16 +127,16 @@ ListeAdjacence convertFStoLA(FileSuccesseur fs) {
 FileSuccesseur convertLAtoFS(ListeAdjacence la) {
     int n = la.nbSom;
     FileSuccesseur fs;
-    allocFS(n, n*2, &fs);
-    int iaps;
+    int arcs = countArcLA(la);
+    allocFS(n, arcs, &fs);
+    int iaps=0;
     Liste tmp;
     int s;
     for (s=0; s<n; s++) {
-        iaps = s;
         fs.APS[s] = iaps;
         tmp = la.tabAdj[s];
         while (!estVide(tmp)) {
-            fs.FS[iaps] = donnee(la.tabAdj[s]);
+            fs.FS[iaps] = donnee(tmp);
             iaps++;
             tmp = suivant(tmp);
         }

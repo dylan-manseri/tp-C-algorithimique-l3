@@ -22,7 +22,7 @@ void printListe(Liste l) {
 
 void printLA(ListeAdjacence la) {
     for (int i=0; i<la.nbSom; i++) {
-        printf("%d : ", i+1);
+        printf("%d : ", i);
         printListe(la.tabAdj[i]);
         printf("\n");
     }
@@ -73,7 +73,7 @@ void printLSP(ListeAdjSuccPred lsp) {
  * @param mat la matrice adjacence ou incidence
  * @param type indique le type pour adopter le bon comportement en fonction
  */
-void printMat(void* mat, TypeMatrice type) {
+void printMat(void* mat, TypeGraphe type) {
     int lig, col;
     if (type == MAT_ADJACENCE) {
         MatAdjacence *matA = (MatAdjacence*) mat;

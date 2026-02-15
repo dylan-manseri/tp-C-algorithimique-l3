@@ -7,11 +7,10 @@
 #include "../../include/prototypeTD12.h"
 
 /**
- * On va prendre print pour l'exemple, mais on peut mettre n'importe quoi
  * Ici notre représentation est la matrice adjacence.
  */
 int* getSuccMatAdj(int s, MatAdjacence g){
-    int n = nbSom(g);
+    int n = nbSomMA(g);
     int *tab = malloc(n+1 * sizeof(int));
     int j=0;
     int i;
@@ -30,7 +29,7 @@ int* getSuccMatAdj(int s, MatAdjacence g){
 
 int* getPredMatAdj(int s, MatAdjacence g){
     s--;
-    int n = nbSom(g);
+    int n = nbSomMA(g);
     int j=0;
     int *tab = malloc(n+1 * sizeof(int));
     int i;
@@ -48,11 +47,10 @@ int* getPredMatAdj(int s, MatAdjacence g){
 }
 
 /**
- * Ici pareil on cherche seulement à traiter les successeurs D'UN sommets.
+ * Ici pareil, on cherche seulement à traiter les successeurs D'UN sommets.
  * On utilise la représentation avec la file de successeur.
  */
 int* getSuccFS(int s, FileSuccesseur fs){
-    s--;                        // On soustrait car sommet logique = sommet algorithmique +1
     int start = fs.APS[s];
     int end = fs.APS[s+1];
     int nb = end - start;
@@ -65,18 +63,17 @@ int* getSuccFS(int s, FileSuccesseur fs){
     return tab;
 }
 
-int* getPredFS(int s, FileSuccesseur fs){     // Pas besoin de soustraire s, on ne s'en sert pas comme indice mais comme contenu
+int* getPredFS(int s, FileSuccesseur fs){
     int nbArcs = fs.nbArcs;
     int nbrSom;
     int k = 0;
+    int l = 0;
     int *tab = malloc(fs.nbSom * sizeof(int));
     for(int i=0; i<fs.nbSom; i++){
         for(int j=fs.APS[i]; j<fs.APS[i+1]; j++){
             if(fs.FS[j] == s){
-                tab[k] = k+1;
-            }
-            else{
-                tab[k] = 0;
+                tab[l] = k;
+                l++;
             }
             k++;
         }
@@ -85,7 +82,6 @@ int* getPredFS(int s, FileSuccesseur fs){     // Pas besoin de soustraire s, on 
 }
 
 int* getSuccL(int s, ListeAdjacence la){
-    s--;
     Liste succ = la.tabAdj[s];
     int* tab = malloc(la.nbSom * sizeof(int));
     int i=0;
@@ -106,7 +102,7 @@ int* getPredL(int s, ListeAdjacence la){
         iSucc = tabL[i];
         while(!estVide(iSucc)){
             if(donnee(iSucc) == s){
-                tab[k] = i+1;
+                tab[k] = i;
                 k++;
             }
             iSucc = suivant(iSucc);
@@ -138,7 +134,7 @@ int estBoucleFS(FileSuccesseur fs){
     while(!trouve && i<fs.nbSom){
         j=fs.APS[i];
         while(!trouve && j<fs.APS[i+1]){
-            if(fs.FS[j] == i+1){
+            if(fs.FS[j] == i){
                 trouve = 1;
             }
             j++;
@@ -161,12 +157,6 @@ int estBoucleLA(ListeAdjacence la){
         if(!estVide(succ) && donnee(succ) == i){
             trouve=1;
         }
-        /*while(!trouve && !estVide(succ)){
-            if(donnee(succ) == i){
-                trouve=1;
-            }
-            succ=suivant(succ);
-        }*/
         i++;
     }
     return trouve;
@@ -228,7 +218,7 @@ int maxSuccLA(ListeAdjacence la){
         }
         if(current>maxSucc){
             maxSucc=current;
-            max=i+1;
+            max=i;
         }
     }
     return max;

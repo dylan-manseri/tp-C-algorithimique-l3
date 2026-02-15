@@ -5,8 +5,8 @@
 
 int mainTD3(void);
 
-int somSuivantMA(int s, int n, int* visite);
-void reParcoursProfondeurMA(int s, int* visite, MatAdjacence mat, int n, int* nbSomVisite);
-void parcoursProfondeurMA(int sd, MatAdjacence mat);
+int somSuivant(int s, int n, int* visite);
+void reParcoursProfondeur(int s, int* visite, void* g, TypeGraphe type, int n, int* nbSomVisite);
+void parcoursProfondeur(int sd, void* g, TypeGraphe type);
 
 #endif

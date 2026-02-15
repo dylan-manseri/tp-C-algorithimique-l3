@@ -7,7 +7,8 @@
 
 #include "structure.h"
 
-int nbSom(MatAdjacence m);
+int nbSomGen(void* g, TypeGraphe type);
+int nbSomMA(MatAdjacence mat);
 
 int estVide(Liste l);
 int estVideLS(ListeSucc ls);
@@ -24,9 +25,11 @@ ListeSucc inserTeteLS(int somSucc, ListeSucc ls);
 Liste adrDernier(Liste l);
 ListePred adrDernierLP(ListePred lp);
 ListeSucc adrDernierLS(ListeSucc ls);
+Liste adrInsert(int donnee, Liste l);
 Liste inserQueue(int donnee, Liste l);
 ListePred inserQueueLP(int somPred, ListePred lp);
 ListeSucc inserQueueLS(int somSucc, ListeSucc ls);
+Liste inserTrie(int donnee, Liste l);
 Liste initL();
 ListeSucc initLS();
 ListePred initLP();
@@ -62,7 +65,7 @@ void printFS(FileSuccesseur fs);
 void printLS(ListeSucc ls);
 void printLP(ListePred lp);
 void printLSP(ListeAdjSuccPred lsp);
-void printMat(void* mat, TypeMatrice type);
+void printMat(void* mat, TypeGraphe type);
 
 int estBoucleMA(MatAdjacence ma);
 int estBoucleFS(FileSuccesseur fs);
@@ -74,6 +77,7 @@ int maxSuccLA(ListeAdjacence la);
 
 ListeAdjacence convertMAtoLA(MatAdjacence ma);
 int countArc(MatAdjacence ma);
+int countArcLA(ListeAdjacence la);
 FileSuccesseur convertMAtoFS(MatAdjacence ma);
 ListeAdjSuccPred convertMAtoLSP(MatAdjacence ma);
 ListeAdjacence convertFStoLA(FileSuccesseur fs);

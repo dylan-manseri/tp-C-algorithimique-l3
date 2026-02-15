@@ -17,10 +17,12 @@ typedef struct {
     int **mat;
 }MatIncidence;
 
-typedef enum{
+typedef enum {
     MAT_ADJACENCE,
-    MAT_INCIDENCE
-}TypeMatrice;
+    MAT_INCIDENCE,
+    FILE_SUCCESSEUR,
+    LISTE_ADJACENCE,
+}TypeGraphe;
 
 typedef struct{
     int nbSom;

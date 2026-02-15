@@ -2,6 +2,7 @@
  *Fonction principale, décommenter pour tester chaque fonctions
  */
 
+#include <stdio.h>
 #include <stdlib.h>
 #include "../include/prototypeTD12.h"
 
@@ -45,12 +46,14 @@ int mainTD1_2(void) {
     fs.nbArcs = 5;
     fs.FS = malloc(fs.nbArcs * sizeof(int));
     fs.APS = malloc(fs.nbSom * sizeof(int));
-    fs.FS[0]=2; fs.FS[1]=3; fs.FS[2]=1; fs.FS[3]=2; fs.FS[4]=3; fs.FS[5]=0;
+    fs.FS[0]=2; fs.FS[1]=3; fs.FS[2]=3; fs.FS[3]=1; fs.FS[4]=2; fs.FS[5]=0;
     fs.APS[0]=0; fs.APS[1]=2; fs.APS[2]=3; fs.APS[3]=4; fs.APS[4]=5;
 
-    //traitSuccFS(4, fs);
+    /*int* succ = getSuccFS(3, fs);
+    printTab(3, succ);*/
 
-    //traitPredFS(3, fs);
+    /*int* pred = getPredFS(3, fs);
+    printTab(2, pred);*/
 
     /*if(estBoucleFS(fs)){
         printf("C'est une boucle !\n");
@@ -69,27 +72,29 @@ int mainTD1_2(void) {
 
     ListeAdjacence la;
     allocLA(4, &la);
-    la.tabAdj[0] = inserQueue(2, la.tabAdj[0]);
-    la.tabAdj[1] = inserQueue(3, la.tabAdj[1]);
+    la.tabAdj[0] = inserQueue(1, la.tabAdj[0]);
+    la.tabAdj[1] = inserQueue(2, la.tabAdj[1]);
+    la.tabAdj[2] = inserQueue(0, la.tabAdj[2]);
     la.tabAdj[2] = inserQueue(1, la.tabAdj[2]);
-    la.tabAdj[2] = inserQueue(2, la.tabAdj[2]);
-    la.tabAdj[3] = inserQueue(4, la.tabAdj[3]);
+    la.tabAdj[3] = inserQueue(3, la.tabAdj[3]);
 
-    //traitSuccL(4, la);
+    /*int* succ = getSuccL(3, la);
+    printTab(4, succ);*/
 
-    //traitPredL(3, la);
+    /*int* pred = getPredL(1, la);
+    printTab(4, pred);*/
 
     /*if(estBoucleLA(la)){
         printf("C'est une boucle !\n");
     }
     else{
         printf("Ce n'est pas une boucle...\n");
-    }*/
+    }/*
 
-   //printf("%d\n", maxSuccLA(la));
+   //printf("%d\n", maxSuccLA(la)+1);
 
     /*FileSuccesseur f = convertLAtoFS(la);
-    printFS(fs);*/
+    printFS(f);*/
 
     return 0;
 }

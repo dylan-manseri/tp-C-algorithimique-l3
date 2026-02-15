@@ -18,4 +18,8 @@ add_executable(TD_GRAPHES main.c
         TD1_2/mainTD1_2.c
         main.c
         TD3/mainTD3.c
+        TD4/partieTP.c
+        TD4/mainTD4.c
+        include/prototypeTD4.h
+        utils/fonctionStruct.c
 )
