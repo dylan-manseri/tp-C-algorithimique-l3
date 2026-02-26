@@ -167,3 +167,55 @@ MatIncidence convertMAtoMI(MatAdjacence ma) {
     }
     return matI;
 }
+
+/**
+ * Conversion d'une matrice d'incidence vers une matrice d'adjacence
+ * @param mi
+ * @return
+ */
+MatAdjacence convertMItoMA(MatIncidence mi) {
+    int nbArc = mi.nbArc;
+    int nbSom = mi.nbSom;
+    int s, t;
+    MatAdjacence ma = allocSMA_F(mi.nbSom);
+    for (int a = 0; a<nbArc; a++) {
+        for (int i=0; i<nbSom; i++) {
+            if (mi.mat[i][a] == 1) {
+                s = i;
+            }
+            else if (mi.mat[i][a] == -1) {
+                t = i;
+            }
+        }
+        ma.mat[s][t] = 1;
+    }
+    return ma;
+}
+
+/**
+ * Conversion d'une matrice incidence vers une matrice d'adjacence
+ * @param mi
+ * @return
+ */
+MatAdjacence convertMItoMA_NO(MatIncidence mi) {
+    int nbArc = mi.nbArc;
+    int nbSom = mi.nbSom;
+    int s, t;
+    int first = 1;      // Variable pour préciser si c'est le 1er sommet rencontré
+    MatAdjacence ma = allocSMA_F(mi.nbSom);
+    for (int a = 0; a<nbArc; a++) {
+        first = 1;
+        for (int i=0; i<nbSom; i++) {
+            if (mi.mat[i][a] == 1 && first) {
+                s = i;
+                first = 0;      // Le prochain ne sera pas le premier
+            }
+            else if (mi.mat[i][a] == 1 && !first) {
+                t = i;
+            }
+        }
+        ma.mat[s][t] = 1;
+        ma.mat[t][s] = 1;
+    }
+    return ma;
+}
