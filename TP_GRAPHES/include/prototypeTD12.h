@@ -83,6 +83,8 @@ ListeAdjSuccPred convertMAtoLSP(MatAdjacence ma);
 ListeAdjacence convertFStoLA(FileSuccesseur fs);
 FileSuccesseur convertLAtoFS(ListeAdjacence la);
 MatIncidence convertMAtoMI(MatAdjacence ma);
+MatAdjacence convertMItoMA(MatIncidence mi);
+MatAdjacence convertMItoMA_NO(MatIncidence mi);
 
 int mainTD1_2(void);
 

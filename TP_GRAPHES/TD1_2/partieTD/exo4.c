@@ -170,6 +170,7 @@ MatIncidence convertMAtoMI(MatAdjacence ma) {
 
 /**
  * Conversion d'une matrice d'incidence vers une matrice d'adjacence
+ * Pour un graphe ORIENTE
  * @param mi
  * @return
  */
@@ -194,6 +195,7 @@ MatAdjacence convertMItoMA(MatIncidence mi) {
 
 /**
  * Conversion d'une matrice incidence vers une matrice d'adjacence
+ * Pour un grpahe NON ORIENTE
  * @param mi
  * @return
  */

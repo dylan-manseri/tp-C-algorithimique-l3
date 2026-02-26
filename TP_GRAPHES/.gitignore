@@ -3,4 +3,4 @@ build
 out
 .idea
 cmake-build-debug
-revisions.c
+./revisions.c
