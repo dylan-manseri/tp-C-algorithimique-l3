@@ -22,5 +22,4 @@ add_executable(TD_GRAPHES main.c
         TD4/mainTD4.c
         include/prototypeTD4.h
         utils/fonctionStruct.c
-        revisions.c
 )

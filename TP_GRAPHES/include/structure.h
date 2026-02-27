@@ -36,6 +36,8 @@ typedef struct cel{
     struct cel* suivant; 
 }*Liste;
 
+typedef Liste File;
+
 typedef struct{
     int nbSom;
     Liste *tabAdj;

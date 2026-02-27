@@ -7,59 +7,53 @@
 #include "../../include/prototypeTD12.h"
 
 /**
- * Ici notre représentation est la matrice adjacence.
+ * Le tableau est bizarre, et c'est un choix, l'indice 0 stocke le nombre de successeurs
  */
 int* getSuccMatAdj(int s, MatAdjacence g){
     int n = nbSomMA(g);
-    int *tab = malloc(n+1 * sizeof(int));
-    int j=0;
+    int *tab = malloc((n+1) * sizeof(int));
+    int j=1;
     int i;
     for(i=0; i<n; i++){
         if(g.mat[s][i] == 1){
             tab[j] = i;
+            j++;
         }
-        else{
-            tab[j] = 0;
-        }
-        j++;
     }
-    tab[0] = i;
+    tab[0] = j-1;
     return tab;
 }
 
 int* getPredMatAdj(int s, MatAdjacence g){
-    s--;
     int n = nbSomMA(g);
-    int j=0;
-    int *tab = malloc(n+1 * sizeof(int));
-    int i;
-    for(i=1; i<n; i++){
+    int j=1;
+    int *tab = malloc((n+1) * sizeof(int));
+    for(int i=0; i<n; i++){
         if(g.mat[i][s] == 1){
-            tab[j] = 1;
+            tab[j] = i;
+            j++;
         }
-        else{
-            tab[j] = 0;
-        }
-        j++;
     }
-    tab[0] = i;
+    tab[0] = j-1;
     return tab;
 }
 
 /**
  * Ici pareil, on cherche seulement à traiter les successeurs D'UN sommets.
  * On utilise la représentation avec la file de successeur.
+ * Le premier indice indique la taille du tableau
  */
 int* getSuccFS(int s, FileSuccesseur fs){
     int start = fs.APS[s];
     int end = fs.APS[s+1];
     int nb = end - start;
-    int *tab = malloc(nb * sizeof(int));
-    int k=0;
+    int *tab = malloc((nb+1) * sizeof(int));
+    int k=1;
     for(int i=start; i<end; i++){
         tab[k] = fs.FS[i];
         k++;
     }
+    tab[0] = k-1;
     return tab;
 }
 
@@ -83,13 +77,14 @@ int* getPredFS(int s, FileSuccesseur fs){
 
 int* getSuccL(int s, ListeAdjacence la){
     Liste succ = la.tabAdj[s];
-    int* tab = malloc(la.nbSom * sizeof(int));
-    int i=0;
+    int* tab = malloc((la.nbSom+1) * sizeof(int));
+    int i=1;
     while(!estVide(succ)){
         tab[i] = donnee(succ);
         succ = suivant(succ);
         i++;
     }
+    tab[0] = i-1;
     return tab;
 }
 

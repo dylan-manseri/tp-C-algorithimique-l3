@@ -33,6 +33,7 @@ Liste inserTrie(int donnee, Liste l);
 Liste initL();
 ListeSucc initLS();
 ListePred initLP();
+Liste suppTete(Liste l);
 
 ListeAdjacence initLA(int nbSom);
 

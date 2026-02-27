@@ -173,3 +173,11 @@ ListeSucc initLS() {
 ListePred initLP() {
     return NULL;
 }
+
+// supp
+Liste suppTete(Liste l) {
+    Liste tmp = l;
+    l = suivant(l);
+    free(tmp);
+    return l;
+}
