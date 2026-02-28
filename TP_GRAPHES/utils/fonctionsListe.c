@@ -181,3 +181,15 @@ Liste suppTete(Liste l) {
     free(tmp);
     return l;
 }
+
+// appartient
+int contain(int d, Liste l) {
+    int trouve = 0;
+    while (!estVide(l) && !trouve) {
+        if (donnee(l) == d) {
+            trouve = 1;
+        }
+        l = suivant(l);
+    }
+    return trouve;
+}

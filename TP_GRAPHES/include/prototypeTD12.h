@@ -34,6 +34,7 @@ Liste initL();
 ListeSucc initLS();
 ListePred initLP();
 Liste suppTete(Liste l);
+int contain(int s, Liste l);
 
 ListeAdjacence initLA(int nbSom);
 
