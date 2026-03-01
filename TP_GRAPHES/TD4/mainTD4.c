@@ -3,7 +3,7 @@
 #include "../include/prototypeTD4.h"
 
 int mainTD4(void) {
-    MatAdjacence ma = loading("/home/dylanm/Insync/nalyd.irsnm@gmail.com/Google Drive/DrivePC/LICENCE INFORMATIQUE/L3 INFORMATIQUE/S6/Graphes et optimisation combinatoire/tp-code/TP_GRAPHES/graphe.txt");
+    MatAdjacence ma = loading("C://Users//dylnm//Insync//nalyd.irsnm@gmail.com//Google Drive//DrivePC//LICENCE INFORMATIQUE//L3 INFORMATIQUE//S6//Graphes et optimisation combinatoire//tp-code//TP_GRAPHES//graphe.txt");
     //MatAdjacence ma2 = getCarreMA(ma);
     //printMat(&ma2, MAT_ADJACENCE);
 

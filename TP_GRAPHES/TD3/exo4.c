@@ -16,9 +16,11 @@ int somSuivant(int s, int n, int* visite) {
         if (visite[s] != 1) {
             trouve = 1;
         }
-        s++;
-        if (s > n) {
+        else {
+           s++;
+            if (s > n) {
             s=0;
+            }
         }
     }
     return s;

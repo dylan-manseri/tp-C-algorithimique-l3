@@ -3,10 +3,12 @@
 #include "include/prototypeTD12.h"
 #include "include/prototypeTD3.h"
 #include "include/prototypeTD4.h"
+#include "include/prototypeTD5.h"
 
 
 int main(void) {
     //mainTD1_2();
     //mainTD3();
-    mainTD4();
+    //mainTD4();
+    mainTD5();
 }
