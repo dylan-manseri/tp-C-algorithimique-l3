@@ -3,6 +3,7 @@
  * Donc ici ça sera tous les algos de l'exo 3.
  */
 
+#include <stdio.h>
 #include <stdlib.h>
 #include "../../include/prototypeTD12.h"
 
@@ -58,20 +59,17 @@ int* getSuccFS(int s, FileSuccesseur fs){
 }
 
 int* getPredFS(int s, FileSuccesseur fs){
-    int nbArcs = fs.nbArcs;
-    int nbrSom;
-    int k = 0;
-    int l = 0;
-    int *tab = malloc(fs.nbSom * sizeof(int));
+    int l = 1;
+    int *tab = malloc((fs.nbSom+1) * sizeof(int));
     for(int i=0; i<fs.nbSom; i++){
         for(int j=fs.APS[i]; j<fs.APS[i+1]; j++){
             if(fs.FS[j] == s){
-                tab[l] = k;
+                tab[l] = i;
                 l++;
             }
-            k++;
         }
     }
+    tab[0] = l-1;
     return tab;
 }
 
@@ -90,9 +88,9 @@ int* getSuccL(int s, ListeAdjacence la){
 
 int* getPredL(int s, ListeAdjacence la){
     Liste* tabL = la.tabAdj;
-    int *tab = malloc(la.nbSom * sizeof(int));
+    int *tab = malloc((la.nbSom+1) * sizeof(int));
     Liste iSucc;
-    int k = 0;
+    int k = 1;
     for(int i=0; i<la.nbSom; i++){
         iSucc = tabL[i];
         while(!estVide(iSucc)){
@@ -103,7 +101,64 @@ int* getPredL(int s, ListeAdjacence la){
             iSucc = suivant(iSucc);
         }
     }
+    tab[0] = k-1;
     return tab;
+}
+
+/**
+ * Renvoi un tableau des successeurs dépendamment du type du graphe (via généricité)
+ * Le premier indice du tableau est le nombre de successeurs
+ * @param s Le sommet dont on souhaite connaître les successeurs
+ * @param type Le type de graphe
+ * @return Le tableau des successeurs
+ */
+int* getSuccByType(int s, TypeGraphe type, void* g) {
+    int* succ;
+    if (type == MAT_ADJACENCE) {
+        MatAdjacence* mat = (MatAdjacence*) g;
+        succ = getSuccMatAdj(s, *mat);
+    }
+    else if (type == FILE_SUCCESSEUR) {
+        FileSuccesseur* fs = (FileSuccesseur*) g;
+        succ = getSuccFS(s, *fs);
+    }
+    else if (type == LISTE_ADJACENCE) {
+        ListeAdjacence* la = (ListeAdjacence*) g;
+        succ = getSuccL(s, *la);
+    }
+    else {
+        printf("\nErreur de type");
+        exit(1);
+    }
+    return succ;
+}
+
+/**
+ * Même chose pour les prédécesseurs
+ * @param s Le sommet dont on souhaite connaître les prédécesseurs
+ * @param type Le type de graphe
+ * @param g Le graphe
+ * @return Le tableau des prédécesseurs
+ */
+int* getPredByType(int s, TypeGraphe type, void* g) {
+    int* succ;
+    if (type == MAT_ADJACENCE) {
+        MatAdjacence* mat = (MatAdjacence*) g;
+        succ = getPredMatAdj(s, *mat);
+    }
+    else if (type == FILE_SUCCESSEUR) {
+        FileSuccesseur* fs = (FileSuccesseur*) g;
+        succ = getPredFS(s, *fs);
+    }
+    else if (type == LISTE_ADJACENCE) {
+        ListeAdjacence* la = (ListeAdjacence*) g;
+        succ = getPredL(s, *la);
+    }
+    else {
+        printf("\nErreur de type");
+        exit(1);
+    }
+    return succ;
 }
 
 /**

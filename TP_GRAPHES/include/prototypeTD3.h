@@ -5,8 +5,6 @@
 
 int mainTD3(void);
 
-int* getSuccByType(int s, TypeGraphe type, void* g);
-
 int somSuivant(int s, int n, int* visite);
 void reParcoursProfondeur(int *s, int* visite, void* g, TypeGraphe type, int n, int* nbSomVisite);
 void parcoursProfondeur(int sd, void* g, TypeGraphe type);

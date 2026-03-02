@@ -24,6 +24,14 @@ void allocTabP(int nMax, int **tab) {
     }
 }
 
+void fullZero(int** mat, int n) {
+    for (int s = 0; s<n; s++) {
+        for (int t=0; t<n; t++) {
+            mat[s][t] = 0;
+        }
+    }
+}
+
 int** allocMemMatF(int nbLig, int nbCol) {
     int **mat = malloc(nbLig * sizeof(int*));   // Un pointeur vers la premiere ligne du tableau qui est un pointeur
     if (mat == NULL) {

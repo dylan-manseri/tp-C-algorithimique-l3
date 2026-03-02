@@ -45,6 +45,11 @@ void libTabP(int **tab);
 void *libMatF(int **mat, int nbLig);
 void libMatP(int ***mat, int nbLig);
 MatAdjacence libMatAdjF(MatAdjacence mat);
+int* allocTab(int nMax);
+void allocTabP(int nMax, int **tab);
+int** allocMemMatF(int nbLig, int nbCol);
+void allocMemMatP(int nbLig, int nbCol, int*** mat);
+void fullZero(int** mat, int n);
 void libMatAdjP(MatAdjacence *mat);
 void allocLA(int n, ListeAdjacence* la);
 void allocFS(int n, int nbArcs, FileSuccesseur* fs);
@@ -53,6 +58,8 @@ MatIncidence alloc_SMI_F(int nbSom, int nbArcs);
 
 MatAdjacence loading(char* nom);
 
+int* getSuccByType(int s, TypeGraphe type, void* g);
+int* getPredByType(int s, TypeGraphe type, void* g);
 int* getSuccMatAdj(int s, MatAdjacence g);
 int* getPredMatAdj(int s, MatAdjacence g);
 int* getSuccFS(int s, FileSuccesseur fs);

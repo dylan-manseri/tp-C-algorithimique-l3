@@ -1,11 +1,6 @@
 #ifndef STRUCT
 #define STRUCT
 
-int* allocTab(int nMax);
-void allocTabP(int nMax, int **tab);
-int** allocMemMatF(int nbLig, int nbCol);
-void allocMemMatP(int nbLig, int nbCol, int*** mat);
-
 typedef struct {
     int nbSom;
     int **mat;
@@ -37,6 +32,7 @@ typedef struct cel{
 }*Liste;
 
 typedef Liste File;
+typedef Liste Pile;
 
 typedef struct{
     int nbSom;

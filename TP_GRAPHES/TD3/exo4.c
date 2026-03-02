@@ -27,34 +27,6 @@ int somSuivant(int s, int n, int* visite) {
 }
 
 /**
- * Renvoi un tableau des successeurs dépendamment du type du graphe (via généricité)
- * Le premier indice du tableau est le nombre de successeurs
- * @param s Le sommet dont on souhaite connaître les successeurs
- * @param type Le type de graphe
- * @return Le tableau des successeurs
- */
-int* getSuccByType(int s, TypeGraphe type, void* g) {
-    int* succ;
-    if (type == MAT_ADJACENCE) {
-        MatAdjacence* mat = (MatAdjacence*) g;
-        succ = getSuccMatAdj(s, *mat);
-    }
-    else if (type == FILE_SUCCESSEUR) {
-        FileSuccesseur* fs = (FileSuccesseur*) g;
-        succ = getSuccFS(s, *fs);
-    }
-    else if (type == LISTE_ADJACENCE) {
-        ListeAdjacence* la = (ListeAdjacence*) g;
-        succ = getSuccL(s, *la);
-    }
-    else {
-        printf("\nErreur de type");
-        exit(1);
-    }
-    return succ;
-}
-
-/**
  * Algorithme récursif de parcours en profondeur d'un graphe.
  * On parcourt le plus profondement possible, s'il n'est plus possible d'avancer, on retourne d'un pas en arrière.
  * Ensuite, on recommence avec un autre sommet non visité
