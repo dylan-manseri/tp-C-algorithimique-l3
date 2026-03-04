@@ -25,4 +25,6 @@ add_executable(TD_GRAPHES main.c
         include/prototypeTD5.h
         TD5/partieTP.c
         TD5/mainTD5.c
+        include/prototypeTD6.h
+        TD6/partieTP.c
 )

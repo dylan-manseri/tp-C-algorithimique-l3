@@ -79,6 +79,7 @@ int* marquagePL(void* g, TypeGraphe type) {
     int* marquage = allocTab(n);
     int nbSomVisite = 0;
     int s = 0;
+    marquage[s] = 0;
     int u;
     // Parcours en largeur à partir du sommet
     File f = initL();
@@ -89,11 +90,11 @@ int* marquagePL(void* g, TypeGraphe type) {
         if (!visite[u]) {
             nbSomVisite++;
             visite[u] = 1;
-            int* succ = getSuccByType(s, type, g);
+            int* succ = getSuccByType(u, type, g);
             for (int i=1; i<succ[0]+1; i++) {
                 if (!visite[i]) {
                     f = inserQueue(succ[i], f);
-                    marquage[succ[i]] = marquage[s]+1;
+                    marquage[succ[i]] = marquage[u]+1;
                 }
             }
         }
@@ -131,7 +132,7 @@ void partition(int n, int* marquage, Liste* s1, Liste* s2) {
 
 /**
  * On a nos deux groupes de sommets.
- * On veut vérifier s'ils n'ont pas de relations avec des sommets hors de leur groupe.
+ * On veut vérifier qu'ils n'ont des relations qu'en dehors de leur groupe
  * @param group La liste de sommet
  * @param type Le type du graphe
  * @param g Le graphe
