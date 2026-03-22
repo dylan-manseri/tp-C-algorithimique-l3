@@ -8,6 +8,7 @@
 */
 #include <stdlib.h>
 
+#include "../include/prototypeTD12.h"
 #include "../include/structure.h"
 
 // Est vide
@@ -60,6 +61,32 @@ Liste inserTete(int donnee, Liste l){
     cel->suivant = l;
     l = cel;
     return l;
+}
+
+Liste adrInsert(int cout, int* tabCout, Liste M) {
+    while (!estVide(suivant(M)) && tabCout[donnee(suivant(M))] < cout) {
+        M = suivant(M);
+    }
+    return M;
+}
+
+Liste inserTrieeCout(int t, Liste M, int* D) {
+    if (estVide(M) || D[t] < D[donnee(M)]) {
+        return inserTete(t, M);
+    }
+    Liste ai = adrInsert(D[t], D, M);
+    Liste new = malloc(sizeof(struct cel));
+    new->donnee = t;
+    new->suivant = suivant(ai);
+    ai->suivant = new;
+    return M;
+}
+
+Liste suppEltCout(int t, Liste M) {
+    if (donnee(M) == t) {
+        return suppTete(M);
+    }
+    return M->suivant = suppEltCout(t, suivant(M));
 }
 
 ListePred inserTeteLP(int somPred, ListePred lp) {

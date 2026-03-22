@@ -4,12 +4,14 @@
 typedef struct {
     int nbSom;
     int **mat;
+    int **cout;
 }MatAdjacence;
 
 typedef struct {
     int nbSom;
     int nbArc;
     int **mat;
+    int **cout;
 }MatIncidence;
 
 typedef enum {
@@ -22,13 +24,15 @@ typedef enum {
 typedef struct{
     int nbSom;
     int nbArcs;
-    int *FS;
-    int *APS;
+    int* FS;
+    int* APS;
+    int* cout;
 }FileSuccesseur;
 
 typedef struct cel{
     int donnee;
-    struct cel* suivant; 
+    struct cel* suivant;
+    int cout;
 }*Liste;
 
 typedef Liste File;

@@ -25,7 +25,9 @@ ListeSucc inserTeteLS(int somSucc, ListeSucc ls);
 Liste adrDernier(Liste l);
 ListePred adrDernierLP(ListePred lp);
 ListeSucc adrDernierLS(ListeSucc ls);
-Liste adrInsert(int donnee, Liste l);
+Liste adrInsert(int cout, int* tabCout, Liste M);
+Liste inserTrieeCout(int t, Liste M, int* D);
+Liste suppEltCout(int t, Liste M);
 Liste inserQueue(int donnee, Liste l);
 ListePred inserQueueLP(int somPred, ListePred lp);
 ListeSucc inserQueueLS(int somSucc, ListeSucc ls);
@@ -94,6 +96,18 @@ FileSuccesseur convertLAtoFS(ListeAdjacence la);
 MatIncidence convertMAtoMI(MatAdjacence ma);
 MatAdjacence convertMItoMA(MatIncidence mi);
 MatAdjacence convertMItoMA_NO(MatIncidence mi);
+
+int coutMA(int s, int t, MatAdjacence ma);
+int coutMI(int s, int t, MatIncidence mi);
+int coutFS(int s, int t, FileSuccesseur fs);
+int coutLA(int s, int t, ListeAdjacence la);
+int cout(int s, int t, void* g, TypeGraphe type);
+
+int existMA(int s, int t, MatAdjacence ma);
+int existMI(int s, int t, MatIncidence mi);
+int existFS(int s, int t, FileSuccesseur fs);
+int existLA(int s, int t, ListeAdjacence la);
+int exist(int s, int t, void* g, TypeGraphe type);
 
 int mainTD1_2(void);
 
