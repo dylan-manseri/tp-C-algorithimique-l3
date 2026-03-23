@@ -160,7 +160,7 @@ File triTopologiqueAcyclique(void* g, TypeGraphe type) {
         M = suppTete(M);
         D[t] = D[t] - 1;
         f = inserQueue(t, f);
-        int* succ = getSuccByType(t, type, g);      // On met à jour le degré de ces sucesseurs.
+        int* succ = getSuccByType(t, type, g);      // On met à jour le degré de ces successeurs.
         for (int i=1; i<succ[0]+1; i++) {
             D[succ[i]] = D[succ[i]] - 1;
             if (D[succ[i]] == 0) {                  // On met à jour M, si besoin.
