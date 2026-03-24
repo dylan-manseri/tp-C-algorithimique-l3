@@ -62,6 +62,10 @@ MatAdjacence loading(char* nom);
 
 int* getSuccByType(int s, TypeGraphe type, void* g);
 int* getPredByType(int s, TypeGraphe type, void* g);
+int getNbPred(int t, void* g, TypeGraphe type);
+int getNbPredMA(int t, MatAdjacence ma);
+int getNbPredFS(int t, FileSuccesseur fs);
+int getNbPredLA(int t, ListeAdjacence la);
 int* getSuccMatAdj(int s, MatAdjacence g);
 int* getPredMatAdj(int s, MatAdjacence g);
 int* getSuccFS(int s, FileSuccesseur fs);

@@ -162,6 +162,90 @@ int* getPredByType(int s, TypeGraphe type, void* g) {
 }
 
 /**
+ * Renvoie le nombre de prédécesseurs d'un sommet d'une matrice d'adjacence.
+ * @param t Le sommet.
+ * @param ma La matrice d'adjacence.
+ * @return Le nombre de prédécesseurs.
+ */
+int getNbPredMA(int t, MatAdjacence ma) {
+    int n = ma.nbSom;
+    int nb = 0;
+    for (int s=0; s<n; s++) {
+        if (ma.mat[s][t] == 1) {
+            nb++;
+        }
+    }
+    return nb;
+}
+
+/**
+ * Renvoie le nombre de prédécesseurs d'un sommet d'une file de successeurs.
+ * @param t Le sommet.
+ * @param fs La file de successeurs.
+ * @return Le nombre de prédécesseurs.
+ */
+int getNbPredFS(int t, FileSuccesseur fs) {
+    int n = fs.nbArcs;
+    int nb = 0;
+    for (int a=0; a<n; a++) {
+        if (fs.FS[a] == t) {
+            nb++;
+        }
+    }
+    return nb;
+}
+
+/**
+ * Renvoie le nombre de prédécesseurs d'un sommet d'une liste d'adjacence.
+ * @param t Le sommet.
+ * @param la La liste d'adjacence.
+ * @return Le nombre de prédécesseurs.
+ */
+int getNbPredLA(int t, ListeAdjacence la) {
+    int n = la.nbSom;
+    Liste l;
+    int nb = 0;
+    for (int s=0; s<n; s++) {
+        l = la.tabAdj[s];
+        while (!estVide(l)) {
+            if (donnee(l) == t) {
+                nb++;
+            }
+        }
+    }
+    return nb;
+}
+
+/**
+ * Renvoie le nombre de prédécesseurs d'un sommet d'un graphe quelconque.
+ * @param t Le sommet.
+ * @param g Le graphe.
+ * @param type Le type de graphe.
+ * @return Le nombre de prédécesseurs.
+ */
+int getNbPred(int t, void* g, TypeGraphe type) {
+    int nb;
+    if (type == MAT_ADJACENCE) {
+        MatAdjacence* mat = (MatAdjacence*) g;
+        nb = getNbPredMA(t, *mat);
+    }
+    else if (type == FILE_SUCCESSEUR) {
+        FileSuccesseur* fs = (FileSuccesseur*) g;
+        nb = getNbPredFS(t, *fs);
+    }
+    else if (type == LISTE_ADJACENCE) {
+        ListeAdjacence* la = (ListeAdjacence*) g;
+        nb = getNbPredLA(t, *la);
+    }
+    else {
+        printf("\nErreur de type");
+        exit(1);
+    }
+    return nb;
+}
+
+
+/**
  * Vérifie si un graphe contient une boucle
  * @param ma
  * @return
