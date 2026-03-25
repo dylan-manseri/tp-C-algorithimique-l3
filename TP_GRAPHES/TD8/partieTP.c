@@ -34,7 +34,7 @@ int estCheminSimple(int S, int P, int** ge, int* visite, int* parent) {
             visite[u] = 1;
             t = 0;
             while (t<n && !arret) {
-                if (ge.mat[u][t] > 0) {             // Si il existe un chemin u->t
+                if (ge[u][t] > 0) {             // Si il existe un chemin u->t
                     if (!visite[t]) {
                         if (parent[t] == -2) {
                             parent[t] = u;
