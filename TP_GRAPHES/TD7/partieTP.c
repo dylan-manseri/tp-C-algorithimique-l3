@@ -51,7 +51,7 @@ void ford(int sd, void* g, TypeGraphe type, int* D, int* P) {
  * @param g Le graphe
  * @param type Le type de représentation du graphe
  * @param D Le tableau des coûts
- * @param P Le tableau des prédécesseur
+ * @param P Le tableau des prédécesseurs
  */
 void djikstra(int s, void* g, TypeGraphe type, int* D, int* P) {
     int n = nbSomGen(g, type);
@@ -147,6 +147,9 @@ void bellman(int sd, void* g, TypeGraphe type, int* D, int* P) {
 
 /**
  * Algorithme de Floyd
+ * Même principe que la fermeture transitive.
+ * On compare le cout du chemin (s→t) avec le cout du chemin ((s→k) + (k→t)).
+ * Cela nous fait une escale, mais si c'est bien inferieur alors, on gagne en coût.
  * @param g Le graphe
  * @param type Le type de représentation
  * @param D La matrice des coûts
@@ -158,6 +161,23 @@ void floyd(void* g, TypeGraphe type, int** D, int** P) {
     for (int s=0; s<n; s++) {
         for (int t=0; t<n; t++) {
             D[s][t] = cout(s, t, g, type);
+            if (D[s][t] != INFINI) {
+                P[s][t] = s;
+            }
+            else {
+                P[s][t] = -1;
+            }
+        }
+    }
+    // Traitement
+    for (int k=0; k<n; k++) {
+        for (int s=0; s<n; s++) {
+            for (int t=0; t<n; t++) {
+                if (D[s][k] + D[k][t] < D[s][t]){       // Est-ce qu'on a une alternative moins couteuse via k ?
+                    D[s][t] = D[s][k] + D[k][t];
+                    P[s][t] = P[k][t];
+                }
+            }
         }
     }
 }
