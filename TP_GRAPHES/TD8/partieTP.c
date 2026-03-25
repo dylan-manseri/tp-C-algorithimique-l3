@@ -10,13 +10,13 @@
  * @param S Le sommet de départ.
  * @param P Le sommet d'arrivée.
  * @param ge Le graphe d'écart.
+ * @param n Le nombre de sommets.
  * @param visite Le tableau des visites indicé par les sommets.
  * @param parent Le tableau des parents indicé par les sommets.
  * @return Vrai si un chemin a été trouvé, faux sinon
  */
-int estCheminSimple(int S, int P, int** ge, int* visite, int* parent) {
+int estCheminSimple(int S, int P, int** ge, int n, int* visite, int* parent) {
     // Initialisation
-    int n = nbSomMA(ge);
     for (int s=0; s<n; s++) {
         parent[s] = -2;             // Aucun sommet n'a de parent
         visite[s] = 0;              // Aucun sommet n'est visité
@@ -71,8 +71,8 @@ int** createGrapheEcart(MatAdjacence g) {
 }
 
 /**
- * On souhaite connaitre le flux minimale de tous les coût d'un même chemin.
- * Cela nous permet de mettre à jour notre graphe d'écart avec une valeur vraie pour tous les flux possible dans ce même chemin.
+ * On souhaite connaitre le flux minimal de tous les coûts d'un même chemin.
+ * Cela nous permet de mettre à jour notre graphe d'écart avec une vraie valeur pour tous les flux possible dans ce même chemin.
  * @param S Le sommet de départ.
  * @param P Le sommet d'arrivée.
  * @param ge Le graphe d'écart.
@@ -98,7 +98,7 @@ int capaciteResiduelle(int S, int P, int** ge, int* parent) {
  * On cherche à calculer le flux maximal que l'on peut envoyer dans un graphe de S à P SANS DÉPASSER LA CAPACITÉ.
  * @param S Le sommet de départ.
  * @param P Le sommet d'arrivée.
- * @param g Le graphe représenter par sa matrice d'adjacence.
+ * @param g Le graphe représenté par sa matrice d'adjacence.
  * @return Le flux maximal
  */
 int fordFulKersun(int S, int P, MatAdjacence g) {
@@ -109,9 +109,9 @@ int fordFulKersun(int S, int P, MatAdjacence g) {
     int fMin;
     int fMax = 0;
     int u, v;
-    while (estCheminSimple(S, P, ge, visite, parent)) {     // Tant qu'un chemin existe dans le graphe d'écart
+    while (estCheminSimple(S, P, ge, n, visite, parent)) {      // Tant qu'un chemin existe dans le graphe d'écart
         // En même temps de nous dire si un chemin existe, la fonction met à jour le tableau parent pour le chemin trouvé (magnifique).
-        fMin = capaciteResiduelle(S, P, ge, parent);        // On calcule le coût (s→t) minimale parmi tous ceux du chemin
+        fMin = capaciteResiduelle(S, P, ge, parent);            // On calcule le coût (s→t) minimale parmi tous ceux du chemin
         // C'est cette valeur qu'on va envoyer partout dans le chemin.
         fMax += fMin;
         v = P;

@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include "structure.h"
 
-int estCheminSimple(int S, int P, int** g, int* visite, int* parent);
+int estCheminSimple(int S, int P, int** g, int n, int* visite, int* parent);
 int** createGrapheEcart(MatAdjacence g);
 int capaciteResiduelle(int S, int P, int** ge, int* parent);
 int fordFulKersun(int S, int P, MatAdjacence g);
