@@ -66,4 +66,22 @@ typedef struct{
     ListeSuccPred *tabAdjSP;
 }ListeAdjSuccPred;
 
+typedef struct {
+    int nbSom;
+    int* alpha;
+    int* beta;
+    int* cout;
+}MatriceIncidenceCC;
+
+typedef struct {
+    int somS;
+    int somT;
+    int cout;
+}Arete;
+
+typedef struct celArete{
+    Arete arete;
+    struct celArete* suivant;
+}*ListeArete;
+
 #endif

@@ -43,7 +43,7 @@ int estCheminSimple(int S, int P, int** ge, int n, int* visite, int* parent) {
                             arret = 1;
                         }
                         else {
-                            f = inserQueue(t, f);   // Sinon, on enfile le sommet est rebelote
+                            f = inserQueue(t, f);   // Sinon, on enfile le sommet et rebelote
                         }
                     }
                 }
@@ -121,8 +121,8 @@ int fordFulKersun(int S, int P, MatAdjacence g) {
             ge[v][u] = ge[v][u] + fMin;         // Et on ajoute le flux qu'on a envoyé à l'inverse, car on l'a envoyé (on peut plus le réenvoyer)
             v = u;
         }while (v!=S);
-        visite = libTabF(visite);
-        parent = libTabF(parent);
     }
+    visite = libTabF(visite);
+    parent = libTabF(parent);
     return fMax;
 }

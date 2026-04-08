@@ -156,3 +156,12 @@ void libMatAdjP(MatAdjacence *mat) {
     mat->mat = libMatF(mat->mat, mat->nbSom);
     mat->nbSom = 0;
 }
+
+MatriceIncidenceCC allocSMICC(int n){
+    MatriceIncidenceCC mat;
+    mat.nbSom = n;
+    mat.alpha = malloc(n * sizeof(int));
+    mat.beta = malloc(n * sizeof(int));
+    mat.cout = allocMemMatF(n, n);
+    return mat;
+}

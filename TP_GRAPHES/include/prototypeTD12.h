@@ -37,6 +37,13 @@ ListeSucc initLS();
 ListePred initLP();
 Liste suppTete(Liste l);
 int contain(int s, Liste l);
+ListeArete initLArete();
+int estVideLA(ListeArete la);
+Arete donneeLA(ListeArete la);
+ListeArete suivantLA(ListeArete la);
+ListeArete inserTeteLA(Arete donnee, ListeArete la);
+ListeArete adrInsertLA(int cout, ListeArete la);
+ListeArete inserTrieeLA(Arete donnee, ListeArete la);
 
 ListeAdjacence initLA(int nbSom);
 
@@ -57,6 +64,8 @@ void allocLA(int n, ListeAdjacence* la);
 void allocFS(int n, int nbArcs, FileSuccesseur* fs);
 void allocLSP(int n, ListeAdjSuccPred* lsp);
 MatIncidence alloc_SMI_F(int nbSom, int nbArcs);
+MatriceIncidenceCC allocSMICC(int n);
+ListeArete suppTeteLA(ListeArete la);
 
 MatAdjacence loading(char* nom);
 

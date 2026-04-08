@@ -1,3 +1,4 @@
+#include <stdlib.h>
 #include "../include/prototypeTD7.h"
 #include "../include/prototypeTD12.h"
 
@@ -69,6 +70,8 @@ void djikstra(int s, void* g, TypeGraphe type, int* D, int* P) {
             M = inserTrieeCout(t, M, D);
         }
     }
+    D[s] = 0;
+    P[s] = s;
     int accessible = 1;
     int m;
     while (accessible && !estVide(M)) {

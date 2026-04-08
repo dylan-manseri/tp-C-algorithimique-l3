@@ -11,6 +11,10 @@
 #include "../include/prototypeTD12.h"
 #include "../include/structure.h"
 
+ListeArete initLArete() {
+    return NULL;
+}
+
 // Est vide
 int nbSom(MatAdjacence m){
     return m.nbSom;
@@ -28,6 +32,10 @@ int estVideLS(ListeSucc ls) {
     return ls==NULL;
 }
 
+int estVideLA(ListeArete la) {
+    return la == NULL;
+}
+
 // Donnee
 int donnee(Liste l){
     return l->donnee;
@@ -39,6 +47,10 @@ int donneeLP(ListePred lp){
 
 int donneeLS(ListeSucc ls){
     return ls->somSucc;
+}
+
+Arete donneeLA(ListeArete la) {
+    return la->arete;
 }
 
 // Suivant
@@ -54,6 +66,10 @@ ListeSucc suivantLS(ListeSucc ls) {
     return ls->suivSucc;
 }
 
+ListeArete suivantLA(ListeArete la) {
+    return la->suivant;
+}
+
 // inserTete
 Liste inserTete(int donnee, Liste l){
     Liste cel = malloc(sizeof(struct cel));
@@ -61,6 +77,36 @@ Liste inserTete(int donnee, Liste l){
     cel->suivant = l;
     l = cel;
     return l;
+}
+
+ListeArete inserTeteLA(Arete donnee, ListeArete la) {
+    ListeArete cel = malloc(sizeof(struct celArete));
+    cel->arete = donnee;
+    cel->suivant = la;
+    return cel;
+}
+
+ListeArete adrInsertLA(int cout, ListeArete la) {
+    while (!estVideLA(suivantLA(la)) && cout < la->arete.cout) {
+        la = suivantLA(la);
+    }
+    return la;
+}
+
+ListeArete inserTrieeLA(Arete donnee, ListeArete la) {
+    if (estVideLA(la)) {
+        return inserTeteLA(donnee, la);
+    }
+    ListeArete ai = adrInsertLA(la->arete.cout, la);
+    ai->suivant = inserTeteLA(donnee, ai->suivant);
+    return la;
+}
+
+ListeArete suppTeteLA(ListeArete la) {
+    ListeArete as = la;
+    la = suivantLA(la);
+    free(as);
+    return la;
 }
 
 Liste adrInsert(int cout, int* tabCout, Liste M) {
